@@ -1,0 +1,44 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch virtual-facility",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}\\virtual-facility",
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "runtimeArgs": ["start:dev", "--", "virtual-facility"],
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "POSTGRES_HOST": "virtual-facility-db",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "postgres",
+        "POSTGRES_DB": "virtual-facility"
+      }
+    },
+    {
+      "name": "Launch workflows-service",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}\\virtual-facility",
+      "runtimeExecutable": "pnpm",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "runtimeArgs": ["start:dev", "--", "workflows-service"],
+      "skipFiles": ["<node_internals>/**"],
+      "env": {
+        "POSTGRES_HOST": "workflows-db",
+        "POSTGRES_PORT": "5432",
+        "POSTGRES_USER": "postgres",
+        "POSTGRES_PASSWORD": "postgres",
+        "POSTGRES_DB": "workflows"
+      }
+    }
+  ]
+}
