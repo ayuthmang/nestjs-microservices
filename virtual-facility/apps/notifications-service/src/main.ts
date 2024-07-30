@@ -8,10 +8,11 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.connectMicroservice<MicroserviceOptions>(
     {
-      transport: Transport.NATS,
+      transport: Transport.RMQ, // 👈
       options: {
-        servers: process.env.NATS_URL,
+        urls: [process.env.RABBITMQ_URL], // 👈
         queue: 'notifications-service',
+        noAck: false,  // 👈
       },
     },
     { inheritAppConfig: true },
