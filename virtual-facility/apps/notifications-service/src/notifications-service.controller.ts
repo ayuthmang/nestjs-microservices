@@ -2,7 +2,9 @@ import { Controller, Logger } from '@nestjs/common';
 import {
   Ctx,
   EventPattern,
+  MessagePattern,
   Payload,
+
   type RmqContext,
 } from '@nestjs/microservices';
 

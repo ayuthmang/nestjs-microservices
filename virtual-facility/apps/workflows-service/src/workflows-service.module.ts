@@ -1,7 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WorkflowsServiceController } from './workflows-service.controller';
-import { WorkflowsServiceService } from './workflows-service.service';
 import { WorkflowsModule } from './workflows/workflows.module';
 import { HealthModule } from './health/health.module';
 
@@ -20,7 +18,7 @@ import { HealthModule } from './health/health.module';
     WorkflowsModule,
     HealthModule,
   ],
-  controllers: [WorkflowsServiceController],
-  providers: [WorkflowsServiceService],
+  controllers: [],
+  providers: [],
 })
 export class WorkflowsServiceModule {}
