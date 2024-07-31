@@ -4,7 +4,6 @@ import {
   EventPattern,
   MessagePattern,
   Payload,
-
   type RmqContext,
 } from '@nestjs/microservices';
 
@@ -26,7 +25,7 @@ export class NotificationsServiceController {
     const originalMsg = context.getMessage();
     // Check if message was already redelivered to avoid entering an infinite loop.
     if (originalMsg.fields.redelivered) {
-      // If so, acknowledge the message and discard it.
+      // If so, acknowledge the message and disc ard it.
       this.logger.verbose(
         `Message was already redelivered. Acknowledging the message and discarding it.`,
       );

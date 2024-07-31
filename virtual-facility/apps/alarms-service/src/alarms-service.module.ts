@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AlarmsServiceController } from './alarms-service.controller';
-import { AlarmsServiceService } from './alarms-service.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { NATS_MESSAGE_BROKER, NOTIFICATIONS_SERVICE } from './constants';
 
@@ -20,11 +19,12 @@ import { NATS_MESSAGE_BROKER, NOTIFICATIONS_SERVICE } from './constants';
         transport: Transport.RMQ,
         options: {
           urls: [process.env.RABBITMQ_URL],
+          queue: 'notifications-service',
         },
       },
     ]),
   ],
   controllers: [AlarmsServiceController],
-  providers: [AlarmsServiceService],
+  providers: [],
 })
 export class AlarmsServiceModule {}

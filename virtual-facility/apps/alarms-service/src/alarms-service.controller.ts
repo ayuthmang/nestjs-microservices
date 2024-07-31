@@ -8,7 +8,8 @@ export class AlarmsServiceController {
   private readonly logger = new Logger(AlarmsServiceController.name);
 
   constructor(
-    @Inject(NATS_MESSAGE_BROKER) private readonly natsMessageBroker: ClientProxy,
+    @Inject(NATS_MESSAGE_BROKER)
+    private readonly natsMessageBroker: ClientProxy,
     @Inject(NOTIFICATIONS_SERVICE)
     private readonly notificationsService: ClientProxy,
   ) {}
