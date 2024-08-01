@@ -1,3 +1,4 @@
+import type { TracingLogger } from '@app/tracing/tracing.logger';
 import { Controller, Logger } from '@nestjs/common';
 import {
   Ctx,
@@ -9,9 +10,10 @@ import {
 
 @Controller()
 export class NotificationsServiceController {
-  private readonly logger = new Logger(NotificationsServiceController.name);
+  // private readonly logger = new Logger(NotificationsServiceController.name);
+  constructor(private readonly logger: TracingLogger) {} // 👈
 
-  @EventPattern('notification.send') // 👈
+  @EventPattern('notification.send')
   sendNotification(@Payload() data: unknown, @Ctx() context: RmqContext) {
     // In the real-world application, this service would be responsible for notifying other services (or user) about the alarm.
     // For example, it could send an email to the building manager/department about the alarm.
