@@ -17,7 +17,6 @@ import { NatsClientModule } from '@app/tracing/nats-client/nats-client.module';
           queue: 'alarms-service',
         },
       },
-
       {
         name: NOTIFICATIONS_SERVICE,
         transport: Transport.RMQ,
