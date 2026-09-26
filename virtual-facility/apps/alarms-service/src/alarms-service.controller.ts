@@ -4,6 +4,7 @@ import { NOTIFICATIONS_SERVICE } from './constants';
 import { lastValueFrom } from 'rxjs';
 import { TracingLogger } from '@app/tracing/tracing.logger';
 import { NatsClientProxy } from '@app/tracing/nats-client/nats-client.proxy';
+import type { RmqClientProxy } from '@app/tracing/rmq-client/rmq-client.proxy';
 
 @Controller()
 export class AlarmsServiceController {
@@ -12,7 +13,7 @@ export class AlarmsServiceController {
   constructor(
     private readonly natsMessageBroker: NatsClientProxy,
     @Inject(NOTIFICATIONS_SERVICE)
-    private readonly notificationsService: ClientProxy,
+    private readonly rmqMessageBroker: RmqClientProxy,
     private readonly logger: TracingLogger, // 👈
   ) {}
 
@@ -35,7 +36,7 @@ export class AlarmsServiceController {
       `Alarm "${data.name}" classified as ${alarmClassification.category}`,
     );
 
-    const notify$ = this.notificationsService.emit('notification.send', {
+    const notify$ = this.rmqMessageBroker.emit('notification.send', {
       alarm: data,
       category: alarmClassification.category,
     });
